@@ -10,7 +10,7 @@ logloc="/root/scripts"
 sendm="1"
  
 # Disks to check
-disks="/dev/sda /dev/sdb"
+disks=$(ls /dev/sd*[a-z])
  
 # Setting up path
 PATH="$PATH:/usr/bin:/usr/sbin"
