@@ -32,7 +32,7 @@ done
 for disk in $disks
 do
   # Creating a array with results
-  declare -a status=(`smartctl -a -d ata $disk | awk '/Reallocated_Sector_Ct/ || /Seek_Error_Rate/ { print $2" "$NF }'`)
+  declare -a status=(`smartctl -a -d auto $disk | awk '/Reallocated_Sector_Ct/ || /Seek_Error_Rate/ { print $2" "$NF }'`)
   # Checking that we do not have any Reallocated Sectors
   if [ "${status[1]}" -ne 0 ]
   then
@@ -46,6 +46,6 @@ done
 #Send an e-mail if needed containing the failed diks (fdisks) info.
 if [ $sendm == 1 ]; then
   fdisks=${failed[@]}
-  mail -s "$mname - You have a disk failing" monitor@limeisp.com < $logloc/diskerror.log
+  mail -s "$mname - You have a disk failing - $disks" monitor@limeisp.com < $logloc/diskerror.log
   rm -rf $logloc/diskerror.log
 fi
