@@ -46,6 +46,6 @@ done
 #Send an e-mail if needed containing the failed diks (fdisks) info.
 if [ $sendm == 1 ]; then
   fdisks=${failed[@]}
-  mail -s "$mname - You have a disk failing - $disks" monitor@limeisp.com < $logloc/diskerror.log
+  mail -s "$mname - You have a disk failing - $disks" user@localhost < $logloc/diskerror.log
   rm -rf $logloc/diskerror.log
 fi
